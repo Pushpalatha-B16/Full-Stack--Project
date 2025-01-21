@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="stylesheet" href="{% static 'css/update.css' %}">
+    <title>Document</title>
+</head>
+<body>
+  <div class="topic">
+    <h2>Student Management System</h2>
+       
+    </div>
+<div class="formborder1">
+                   
+                 
+                    <div class="formborder2"> 
+                      <h2>Update Form</h2>
+                      <form action="/update/{{data.id}}" method="post" autocomplete="off">  <!-- here add(function name of view.py)-->
+                               {% csrf_token %}
+                         <label for="s_name">Enter Name:</label>                    <!-- {{data.Name}} name=models.name-->
+                         <input type="text" placeholder="Enter Name" name="name" value="{{data.Name}}" id="s_name">
+                         <label for="s_age">Age:</label>
+                         <input type="number" placeholder="Enter Age" name="age" value="{{data.Age}}" id="s_age">
+                         <label for="s_mail">Email:</label>
+                         <input type="email" placeholder="Enter mail id" name="mail" value="{{data.Email}}" id="s_mail">
+                         <label for="s_city">City:</label>
+                         <input type="text" placeholder="Enter city" name="city" value="{{data.city}}" id="s_city">
+                         <label for="s_degree">Degree:</label>
+                         <input type="text" placeholder="Enter Degree" name="degree" value="{{data.Degree}}" id="s_degree">   
+                         <label for="s_mobile">Mobile No:</label>
+                         <input type="number" placeholder="Enter Number" name="mobile" value="{{data.Mobile}}" id="s_mobile">  
+                         <input type="submit" value="UPDATE" class="update-button">
+            
+                      </form>
+                    </div>
+                    
+                 </div>
+                
+                </body>
+             
+                </html>
+               
+                
