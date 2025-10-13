@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container1">
+      <div class="container2">
+      <img src="https://someindiangirl.com/wp-content/uploads/2021/11/thali-1-of-1-1024x1536.jpg">
+      <div>
+      <div class="container3">
+        <h3>New Recipe</h3>
+        <form #productdetails="ngForm" (ngsubmit)="onSubmit(productdetails)" enctype="multipart/form-data" ngNativeValidate>
+    <p>Item Name</p>
+    <input type="text" name="product_name" #p_name="ngModel" [(ngModel)]="newItems.product_name" required >
+    <span *ngIf="(!p_name.valid) && p_name.touched">This Field is Mandatory</span>
+      <p>Item Price</p>
+    <input type="number" name="product_price" #p_price="ngModel" [(ngModel)]="newItems.product_price" required >
+    <span *ngIf="(!p_price.valid) && p_price.touched">This Field is Mandatory</span>
+     <p>Item Image</p>
+    <input type="file" name="product_picture"  (change)="onFileSelected($event)"  required>
+      <p>Item Description</p>
+    <input type="text" name="product_description" #p_des="ngModel" [(ngModel)]="newItems.product_details" required>
+    <span *ngIf="(!p_des.valid) && p_des.touched">This Field is Mandatory</span>
+<button (click)="onSubmit(productdetails)" [disabled]="!productdetails.valid" > Submit</button>
+<span *ngIf="!productdetails.valid">All Fields Are Required </span>
+</form>
+
+</div>
+      </div>
+      
+      </div> 
+     
+    </div>
+    <!--
+   <form #productdetails="ngForm" (submit)="onSubmit(productdetails)">
+    <p>Product Name</p>
+    <input type="text" name="name" [(ngModel)]="newItems.product_name" >
+      <p>Product Price</p>
+    <input type="number" name="name" [(ngModel)]="newItems.product_price" >
+     <p>Product Image</p>
+    <input type="url" name="name" [(ngModel)]="newItems.product_image" >
+      <p>Product Description</p>
+    <input type="text" name="name" [(ngModel)]="newItems.product_description" >
+<button type="submit">Submit</button>
+</form>-->
+ <button [routerLink]="['']" >Go to Home</button>
+</body>
+</html>
