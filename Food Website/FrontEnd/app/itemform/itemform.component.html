@@ -1,0 +1,121 @@
+<body class="min-h-screen bg-gradient-to-br from-green-100 via-white to-emerald-100 flex items-center justify-center p-4">
+
+  <div class="bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+
+    <!-- LEFT DESIGN SECTION -->
+    <div class="hidden md:flex flex-col justify-center items-center bg-gradient-to-br from-green-500 to-emerald-600 text-white p-10">
+      <h2 class="text-3xl font-bold mb-3">Add New Recipe 🍽️</h2>
+      <p class="text-sm text-green-100 text-center leading-relaxed">
+        Fill in the details to add a delicious recipe. Simple, clean and modern form design.
+      </p>
+      <img
+        src="https://images.unsplash.com/photo-1556386734-4227a180d19e?q=80&w=705&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        class="mt-8 rounded-2xl shadow-lg object-cover h-56 w-full"
+      />
+    </div>
+
+    <!-- FORM SECTION -->
+    <div class="p-8">
+
+      <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center md:text-left">
+        New Recipe
+      </h3>
+
+      <form
+        #productdetails="ngForm"
+        (ngSubmit)="onSubmit(productdetails)"
+        enctype="multipart/form-data"
+        ngNativeValidate
+        class="space-y-5"
+      >
+
+        <!-- ITEM NAME -->
+        <div>
+          <label class="text-sm font-medium text-gray-600">Item Name</label>
+          <input
+            type="text"
+            name="product_name"
+            #p_name="ngModel"
+            [(ngModel)]="newItems.product_name"
+            required
+            placeholder="Eg: Paneer Butter Masala"
+            class="w-full mt-1 px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-transparent outline-none"
+          />
+          <span *ngIf="(!p_name.valid) && p_name.touched" class="text-red-500 text-xs">
+            Item name is required
+          </span>
+        </div>
+
+        <!-- ITEM PRICE -->
+        <div>
+          <label class="text-sm font-medium text-gray-600">Item Price (₹)</label>
+          <input
+            type="number"
+            name="product_price"
+            #p_price="ngModel"
+            [(ngModel)]="newItems.product_price"
+            required
+            placeholder="Eg: 250"
+            class="w-full mt-1 px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-transparent outline-none"
+          />
+          <span *ngIf="(!p_price.valid) && p_price.touched" class="text-red-500 text-xs">
+            Price is required
+          </span>
+        </div>
+
+        <!-- ITEM IMAGE -->
+        <div>
+          <label class="text-sm font-medium text-gray-600">Item Image</label>
+          <input
+            type="file"
+            name="product_picture"
+            (change)="onFileSelected($event)"
+            required
+            class="w-full mt-1 px-4 py-2 rounded-xl border border-dashed border-green-400 bg-green-50 cursor-pointer"
+          />
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div>
+          <label class="text-sm font-medium text-gray-600">Item Description</label>
+          <textarea
+            name="product_description"
+            #p_des="ngModel"
+            [(ngModel)]="newItems.product_details"
+            rows="3"
+            required
+            placeholder="Short description about the recipe"
+            class="w-full mt-1 px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-transparent outline-none"
+          ></textarea>
+          <span *ngIf="(!p_des.valid) && p_des.touched" class="text-red-500 text-xs">
+            Description is required
+          </span>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="flex items-center justify-between pt-4">
+          <button
+            type="submit"
+            [disabled]="!productdetails.valid"
+            class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-2 rounded-xl shadow-md disabled:opacity-50 hover:scale-105 transition-transform"
+          >
+            Submit
+          </button>
+
+          <button
+            [routerLink]="['']"
+            class="text-sm text-green-600 hover:underline"
+          >
+            Go to Home
+          </button>
+        </div>
+
+        <span *ngIf="productdetails.touched && !productdetails.valid" class="text-red-500 text-xs block text-center">
+          All fields are required
+        </span>
+
+      </form>
+    </div>
+  </div>
+
+</body>

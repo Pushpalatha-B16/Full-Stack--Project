@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+
+<!-- MAIN LIST -->
+<div *ngIf="!popup">
+
+  <!-- NAVBAR -->
+  <nav class="bg-green-500 text-white shadow p-4">
+    <ul class="flex justify-between items-center px-5 py-4">
+      <li class="text-lg font-semibold">Healthy Foods</li>
+      <div class="flex gap-5 text-m">
+        <li><a routerLink="" class="hover:underline">Home</a></li>
+        <li><a routerLink="itemform" class="hover:underline">Add Items</a></li>
+      </div>
+    </ul>
+  </nav>
+
+  <!-- TITLE -->
+  <h2 class="text-center text-2xl font-semibold text-gray-800 my-7">
+    Find Your Favourite Food
+  </h2>
+
+  <!-- PRODUCTS -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 px-5">
+
+    <div
+      *ngFor="let i of products"
+      class="bg-white rounded-xl shadow-sm border"
+    >
+
+      <!-- IMAGE (FIXED RESPONSIVE) -->
+      <div class="w-full h-40 sm:h-44 md:h-48 overflow-hidden rounded-t-xl ">
+        <img
+          [src]="i.product_picture"
+          class="w-full h-full object-cover "
+          alt="food"
+        />
+      </div>
+
+      <!-- CONTENT -->
+      <div class="p-4">
+        <p class="font-medium text-gray-800">
+          {{ i.product_name }}
+        </p>
+
+        <p class="text-emerald-600 font-semibold">
+          Rs. {{ i.product_price }}
+        </p>
+
+        <button
+          (click)="getvalue(i.id)"
+          class="mt-2 text-sm text-orange-500 hover:underline"
+        >
+          View More Details
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DETAILS SECTION -->
+<div *ngIf="popup" class="px-5 py-8">
+
+  <div *ngIf="selectvalue"
+       class="max-w-xl mx-auto bg-white rounded-xl shadow p-6">
+
+    <h2 class="text-xl font-semibold text-center mb-4 text-gray-800">
+      Product Details
+    </h2>
+
+    <!-- IMAGE SAFE -->
+    <div class="w-full h-48 overflow-hidden rounded-lg mb-4">
+      <img
+        [src]="selectvalue.product_picture"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <p class="mb-2">
+      <b>Name:</b> {{ selectvalue.product_name }}
+    </p>
+
+    <p class="mb-2">
+      <b>Price:</b>
+      <span class="text-emerald-600 font-semibold">
+        Rs. {{ selectvalue.product_price }}
+      </span>
+    </p>
+
+    <p class="text-sm text-gray-600 mb-5">
+      <b>Benefits:</b> {{ selectvalue.product_details }}
+    </p>
+
+    <div class="flex justify-between">
+      <button
+        (click)="ordernow()"
+        class="bg-emerald-600 text-white px-4 py-2 rounded-lg"
+      >
+        Order
+      </button>
+
+      <button
+        (click)="cancelbtn()"
+        class="bg-gray-300 px-4 py-2 rounded-lg"
+      >
+        Back
+      </button>
+    </div>
+
+  </div>
+</div>
+
+</body>
+
+
+</html>

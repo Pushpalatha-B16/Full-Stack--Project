@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <nav class="w-full bg-green-600 text-white shadow-lg">
+
+  <!-- DESKTOP NAVBAR -->
+  <ul
+    *ngIf="!sidebar"
+    class="flex items-center justify-between p-8"
+  >
+    <!-- Logo -->
+    <li class="text-xl font-bold tracking-wide">
+      Healthy Foods
+    </li>
+
+    <!-- Menu -->
+    <li class="hidden md:flex space-x-6 text-m">
+      <a
+        routerLink="home"
+        class="hover:text-green-200 transition"
+      >
+        Recipes
+      </a>
+    </li>
+
+    <!-- Hamburger (Mobile) -->
+    <li class="md:hidden">
+      <i
+        class="fa-solid fa-bars text-2xl cursor-pointer"
+        (click)="handlesidebar()"
+      ></i>
+    </li>
+  </ul>
+
+  <!-- MOBILE SIDEBAR -->
+  <ul
+    *ngIf="sidebar"
+    class="fixed top-0 right-0 h-screen w-72 bg-white text-gray-800 flex flex-col px-6 py-6 shadow-2xl z-50"
+  >
+    <!-- Close -->
+    <li class="self-end mb-6">
+      <i
+        class="fa-solid fa-xmark text-2xl cursor-pointer"
+        (click)="handleclosebar()"
+      ></i>
+    </li>
+
+    <!-- Logo -->
+    <li class="text-2xl font-bold text-green-600 mb-8">
+      Healthy Foods
+    </li>
+
+    <!-- Links -->
+    <li class="space-y-4 text-lg">
+      <a
+        routerLink="home"
+        class="block hover:text-green-600 transition"
+        (click)="handleclosebar()"
+      >
+        Recipes
+      </a>
+
+      <a
+        routerLink="home/itemform"
+        class="block hover:text-green-600 transition"
+        (click)="handleclosebar()"
+      >
+        Add New Recipes
+      </a>
+    </li>
+  </ul>
+
+</nav>
+
+<section class="w-full h-[86vh] relative">
+  <!-- Background Image -->
+  <img
+    src="https://images.unsplash.com/photo-1498837167922-ddd27525d352"
+    alt="Healthy Food"
+    class="w-full h-full object-cover"
+  />
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+    <div class="text-center text-white px-4">
+      <h1 class="text-3xl md:text-5xl font-bold mb-4">
+        Eat Healthy, Live Better
+      </h1>
+      <p class="text-lg md:text-xl">
+        Discover nutritious and delicious recipes
+      </p>
+    </div>
+  </div>
+</section>
+
+
+</body>
+</html>
+
